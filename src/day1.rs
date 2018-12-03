@@ -1,45 +1,34 @@
 use std::collections::HashSet;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use day::Day;
 
-pub fn part_one() -> isize {
-    BufReader::new(File::open("input/day1.txt").unwrap())
-        .lines()
-        .fold(0, |acc, line| acc + line.unwrap().parse::<isize>().unwrap())
-}
+pub struct Day1;
 
-pub fn part_two() -> isize {
-    let numbers: Vec<_> =
-        BufReader::new(File::open("input/day1.txt").unwrap())
-        .lines()
-        .map(|line| line.unwrap().parse::<isize>().unwrap())
-        .collect();
-    let mut seen = HashSet::new();
-    let mut acc = 0;
+impl Day for Day1 {
+    fn number(&self) -> isize { 1 }
+    fn name(&self) -> &str { "Chronal Calibration" }
 
-    loop {
-        for n in numbers.iter() {
-            acc += n;
+    fn part_one(&mut self, input: &str) -> String {
+        input.lines()
+            .fold(0, |acc, line| acc + line.parse::<isize>().unwrap())
+            .to_string()
+    }
 
-            if seen.contains(&acc) {
-                return acc
+    fn part_two(&mut self, input: &str) -> String {
+        let numbers: Vec<_> = input.lines()
+            .map(|line| line.parse::<isize>().unwrap())
+            .collect();
+        let mut seen = HashSet::new();
+        let mut acc = 0;
+
+        loop {
+            for n in numbers.iter() {
+                acc += n;
+
+                if seen.contains(&acc) {
+                    return acc.to_string();
+                }
+                seen.insert(acc);
             }
-            seen.insert(acc);
         }
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_part_one() {
-        assert_eq!(part_one(), 493);
-    }
-
-    #[test]
-    fn test_part_two() {
-        assert_eq!(part_two(), 413);
     }
 }
