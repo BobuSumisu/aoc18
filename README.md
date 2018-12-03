@@ -8,3 +8,4 @@ This year in nooby Rust.
 
 * Day 1: [OK](src/day1.rs)
 * Day 2: [OK](src/day2.rs)
+* Day 3: [OK](src/day3.rs)
