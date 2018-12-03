@@ -41,7 +41,7 @@ impl Day for Day3 {
     fn name(&self) -> &str { "No Matter How You Slice It" }
 
     fn part_one(&mut self, input: &str) -> String {
-        let mut fabric: [usize; 1000*1000] = [0; 1000*1000];
+        let mut fabric = vec![0; 1000*1000];
         input.lines()
             .map(|line| Claim::new(line))
             .for_each(|claim| {
@@ -51,6 +51,7 @@ impl Day for Day3 {
                     }
                 }
             });
+
         fabric.iter()
             .filter(|&x| *x > 1)
             .count()
@@ -77,6 +78,25 @@ impl Day for Day3 {
             }
         }
 
-        "(not found)".to_owned()
+        "failed".to_string()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part_one() {
+        let mut day = Day3;
+        let input = day.input();
+        assert_eq!(day.part_one(&input), "110546");
+    }
+
+    #[test]
+    fn test_part_two() {
+        let mut day = Day3;
+        let input = day.input();
+        assert_eq!(day.part_two(&input), "819");
     }
 }

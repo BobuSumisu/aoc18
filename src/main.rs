@@ -14,8 +14,8 @@ fn run(day: &mut Day) {
     let mut input = String::new();
     File::open(format!("input/day{}.txt", day.number())).unwrap().read_to_string(&mut input).unwrap();
     println!("\n--- Day {}: {} ---\n", day.number(), day.name());
-    println!("  Part One: {}", day.part_one(&input));
-    println!("  Part Two: {}", day.part_two(&input));
+    println!("  Part One: {:?}", day.part_one(&input));
+    println!("  Part Two: {:?}", day.part_two(&input));
 }
 
 fn main() {

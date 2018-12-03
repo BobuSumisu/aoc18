@@ -17,6 +17,7 @@ impl Day for Day1 {
         let numbers: Vec<_> = input.lines()
             .map(|line| line.parse::<isize>().unwrap())
             .collect();
+
         let mut seen = HashSet::new();
         let mut acc = 0;
 
@@ -27,8 +28,28 @@ impl Day for Day1 {
                 if seen.contains(&acc) {
                     return acc.to_string();
                 }
+
                 seen.insert(acc);
             }
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part_one() {
+        let mut day1 = Day1;
+        let input = day1.input();
+        assert_eq!(day1.part_one(&input), "493");
+    }
+
+    #[test]
+    fn test_part_two() {
+        let mut day1 = Day1;
+        let input = day1.input();
+        assert_eq!(day1.part_two(&input), "413");
     }
 }
