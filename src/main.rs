@@ -1,10 +1,12 @@
 #[macro_use] extern crate lazy_static;
 extern crate regex;
+extern crate chrono;
 
 pub mod day;
 pub mod day1;
 pub mod day2;
 pub mod day3;
+pub mod day4;
 
 use std::fs::File;
 use std::io::prelude::*;
@@ -19,10 +21,11 @@ fn run(day: &mut Day) {
 }
 
 fn main() {
-    let mut days: [Box<Day>; 3] = [
+    let mut days: [Box<Day>; 4] = [
         Box::new(day1::Day1),
         Box::new(day2::Day2),
         Box::new(day3::Day3),
+        Box::new(day4::Day4),
     ];
 
     days.iter_mut()
